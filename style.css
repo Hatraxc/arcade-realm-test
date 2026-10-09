@@ -1,0 +1,191 @@
+/* 1. ПЕРЕМЕННЫЕ ЦВЕТОВ (Playful & Minimal) */
+:root {
+    /* Тёмная тема (Глубокий графитовый, мягкий чёрный) */
+    --bg-color: #121214;       
+    --card-bg: #1a1a1e;       
+    --text-color: #ffffff;    
+    --accent-color: #ffb800;  /* Добрый жёлтый/банановый цвет */
+    --border-color: #2c2c35;  
+}
+
+body.light-theme {
+    /* Светлая тема (Мягкий молочный/кремовый фон) */
+    --bg-color: #f7f4ef;       
+    --card-bg: #ffffff;       
+    --text-color: #1a1a1a;    
+    --accent-color: #ff6b6b;  /* Дружелюбный кораллово-красный */
+    --border-color: #1a1a1a;  /* Жирный чёрный контур для мультяшности */
+}
+
+/* 2. БАЗОВЫЕ НАСТРОЙКИ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', 'Segoe UI', Roboto, sans-serif; /* Округлый дружелюбный шрифт */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    /* Плавный переход для всех свойств */
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 3. ШАПКА САЙТА */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 900; /* Очень жирный, «пухлый» шрифт */
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+/* 4. КНОПКА СМЕНЫ ТЕМЫ (Мягкая переключалка) */
+.theme-toggle-btn {
+    align-self: flex-end;
+    padding: 12px 24px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 3px solid var(--border-color);
+    border-radius: 100px; /* Идеально круглая по бокам */
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 0 var(--border-color); /* Объёмная «игрушечная» тень */
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 20px;
+}
+
+/* Эффект нажатия на игрушечную кнопку */
+.theme-toggle-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 0 var(--border-color);
+}
+
+.theme-toggle-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 var(--border-color);
+}
+
+/* 5. СЕТКА И ДРУЖЕЛЮБНЫЕ КАРТОЧКИ ИГР */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 90%;
+    max-width: 900px;
+    margin-top: 20px;
+}
+
+.game-card {
+    background-color: var(--card-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 32px; /* Очень скругленные углы */
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 8px 0 var(--border-color); /* Фирменная плоская тень */
+    /* Упругая анимация (Bounce) */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.5); 
+}
+
+/* Пружинящий эффект при наведении на карточку игры */
+.game-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 0 var(--border-color);
+    border-color: var(--accent-color);
+}
+
+.game-icon {
+    font-size: 4rem; /* Крупные мультяшные эмодзи-иконки */
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.5);
+}
+
+.game-card:hover .game-icon {
+    transform: scale(1.2) rotate(-10deg); /* Иконка забавно подпрыгивает */
+}
+
+.game-card h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.game-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.8;
+    font-weight: 500;
+}
+
+/* =======================================================
+   ТРАЕКТОРИЯ ПОЛЁТА СОЛНЦА И ЛУНЫ
+   ======================================================= */
+
+/* Базовое состояние для светил (они спрятаны далеко слева за экраном) */
+.sun, .moon {
+    position: fixed;
+    /* Намертво привязываем элементы к верхней центральной точке, где они должны растворяться */
+    top: 10%;            
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    z-index: -1;         /* Позади всех элементов */
+    pointer-events: none;
+    opacity: 0;
+
+    /* Выносим воображаемый центр вращения («якорь») глубоко вниз и влево */
+    /* Теперь, когда мы крутим элемент, он ходит по идеальной идеальной дуге! */
+    transform-origin: -150% 400%; 
+}
+
+/* --- ТРИГГЕРЫ ДЛЯ ЗАПУСКА КРУГОВЫХ АНИМАЦИЙ --- */
+
+/* Включается тёмная тема — крутим Луну */
+body:not(.light-theme) .moon {
+    animation: perfectCircleArc 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Включается светлая тема — крутим Солнце */
+body.light-theme .sun {
+    animation: perfectCircleArc 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* --- ТРАЕКТОРИЯ ВРАЩЕНИЯ ПО ИДЕАЛЬНОМУ КРУГУ --- */
+@keyframes perfectCircleArc {
+    0% {
+        /* Стартуем глубоко зажатыми по углу (спрятаны слева внизу) */
+        transform: translate(-50%, -50%) rotate(-45deg) scale(0.3);
+        opacity: 0;
+    }
+    30% {
+        opacity: 1; /* Плавно проявляемся, уже пролетая над карточками */
+    }
+    70% {
+        opacity: 0.8; /* Красиво горим на пике над заголовком */
+    }
+    100% {
+        /* Доходим до финальной верхней центральной точки (угол 0 градусов) */
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+        opacity: 0; /* Полностью растворяемся в воздухе прямо над h1 */
+    }
+}

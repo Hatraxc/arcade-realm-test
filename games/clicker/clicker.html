@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Капибара CLIСKER 🍉</title>
+    <link rel="icon" type="image/png" href="../../favicon.png">
+    <link rel="stylesheet" href="clicker.css">
+</head>
+<body>
+
+    <!-- Кнопка возврата в меню -->
+    <a href="../../index.html" class="back-home-btn">🏠 В меню</a>
+
+    <!-- ГЛАВНЫЙ ИГРОВОЙ КОНТЕЙНЕР НА ВЕСЬ ЭКРАН -->
+    <div class="full-screen-game">
+        
+        <!-- ЛЕВАЯ ЧАСТЬ: Счетчик и сама Капибара -->
+        <div class="main-play-zone">
+            
+            <!-- Парящая плашка-облако для показателей -->
+            <div class="sky-cloud-panel">
+                <div class="score-board">
+                    <span id="capyScore">0</span>
+                    <img src="watermelon.png" class="score-wm-img" alt="🍉">
+                </div>
+                <div class="stats-lines">
+                    <p class="cps-info">Клик: <span id="clickValue">1</span> 🍉</p>
+                    <p class="cps-info">В секунду: <span id="cpsValue">0</span> 🍉</p>
+                </div>
+            </div>
+
+            <!-- Игровая зона с Капибарой -->
+            <div class="capy-zone" id="capyZone">
+                <div class="capy-wrapper" id="capyTarget">
+                    <!-- Меняет свой src на наряды -->
+                    <img src="capybara.png" class="capy-img" alt="Капибара">
+                    <div class="capy-mouth" id="capyMouth"></div>
+                </div>
+                <p class="click-hint">Корми Капибару арбузами!</p>
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ ЧАСТЬ: Панель магазина и гардероба нарядов -->
+        <div class="glass-panel side-shop-panel">
+            
+            <!-- Переключатели вкладок -->
+            <div class="tabs-nav">
+                <button class="tab-link active" onclick="openTab(event, 'upgradesTab')">🍉 Прокачка</button>
+                <button class="tab-link" onclick="openTab(event, 'hatsTab')">✨ Наряды</button>
+            </div>
+
+            <!-- Вкладка 1: Улучшения -->
+            <div id="upgradesTab" class="tab-content active">
+                <h2>⚡ Активные навыки</h2>
+                <div class="upgrade-card">
+                    <div class="upgrade-info">
+                        <h3>Сила клика</h3>
+                        <p>Добавляет +1 арбуз за каждый клик</p>
+                    </div>
+                    <button class="shop-btn" id="clickUpgradeBtn">50 🍉</button>
+                </div>
+                <div class="upgrade-card">
+                    <div class="upgrade-info">
+                        <h3>Арбузный Крит</h3>
+                        <p>Шанс <span id="critChanceValue">0</span>% получить x5 за клик!</p>
+                    </div>
+                    <button class="shop-btn" id="critUpgradeBtn">1500 🍉</button>
+                </div>
+
+                <h2>🤖 Авто-фермы</h2>
+                <div class="upgrade-card">
+                    <div class="upgrade-info">
+                        <h3>Мягкая трава</h3>
+                        <p>Пассивный доход: +1 🍉/сек</p>
+                    </div>
+                    <button class="shop-btn" id="farm1Btn">400 🍉</button>
+                </div>
+                <div class="upgrade-card">
+                    <div class="upgrade-info">
+                        <h3>Арбузная Грядка</h3>
+                        <p>Пассивный доход: +8 🍉/сек</p>
+                    </div>
+                    <button class="shop-btn" id="farm2Btn">2500 🍉</button>
+                </div>
+                <div class="upgrade-card">
+                    <div class="upgrade-info">
+                        <h3>Капибара-Помощник</h3>
+                        <p>Пассивный доход: +50 🍉/сек</p>
+                    </div>
+                    <button class="shop-btn" id="farm3Btn">18000 🍉</button>
+                </div>
+            </div>
+
+            <!-- Вкладка 2: Наряды -->
+            <div id="hatsTab" class="tab-content">
+                <h2>✨ Модные Наряды</h2>
+                <div class="hats-grid">
+                    <div class="hat-card" onclick="buyHat('none', 0)">
+                        <span class="hat-preview">🥔</span>
+                        <p>Обычный стиль</p>
+                        <button class="hat-btn owned" id="hat-none">Надето</button>
+                    </div>
+                    <div class="hat-card" onclick="buyHat('cowboy', 300)">
+                        <img src="hat-cowboy.png" class="hat-shop-img" alt="🤠">
+                        <p>Ковбой Капи</p>
+                        <button class="hat-btn" id="hat-cowboy">300 🍉</button>
+                    </div>
+                    <div class="hat-card" onclick="buyHat('crown', 2000)">
+                        <img src="hat-crown.png" class="hat-shop-img" alt="👑">
+                        <p>Король Капи</p>
+                        <button class="hat-btn" id="hat-crown">2000 🍉</button>
+                    </div>
+                    <div class="hat-card" onclick="buyHat('wizard', 7500)">
+                        <img src="hat-wizard.png" class="hat-shop-img" alt="🧙‍♂️">
+                        <p>Маг Капи</p>
+                        <button class="hat-btn" id="hat-wizard">7500 🍉</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="clicker.js"></script>
+</body>
+</html>

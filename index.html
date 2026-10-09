@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <div class="sun">☀️</div>
+    <div class="moon">🌙</div>
+
+    <!-- Кнопка переключения темы -->
+    <button class="theme-toggle-btn" id="themeBtn">🌓 Тема</button>
+
+    <!-- Шапка сайта -->
+    <header>
+        <h1>Игровой Класс! 🎮</h1>
+        <p>Простые и весёлые игры от разработчика</p>
+    </header>
+
+    <!-- Сетка с тремя играми по нашему ТЗ -->
+    <main class="games-grid">
+        
+        <!-- Карточка 1: Капибара (Обновлённая ссылка) -->
+         <div class="game-card" onclick="window.location.href='games/clicker/clicker.html'">
+            <div class="game-icon">🦫</div>
+            <h3>Капибара Кликер</h3>
+            <p>Кликай по самой чилловой капибаре, зарабатывай очки и открывай крутые внутренние улучшения!</p>
+         </div>
+
+        <!-- Карточка 2: Пупырка -->
+        <div class="game-card" onclick="alert('Тут будет бесконечная пупырка!')">
+            <div class="game-icon">💥</div>
+            <h3>Симулятор Пупырки</h3>
+            <p>Бесконечная антистресс-плёнка. Лопай разноцветные пупырки с сочным хлопком и расслабляйся.</p>
+        </div>
+
+        <!-- Карточка 3: Кото-Кейсы -->
+        <div class="game-card" onclick="alert('Тут будет открытие кейсов с Котиками!')">
+            <div class="game-icon">🐈‍⬛</div>
+            <h3>Кото-Кейсы 🎰</h3>
+            <p>Испытай удачу! Открывай коробки, выбивай мемных и редких котов, продавай повторки и собери полную коллекцию.</p>
+        </div>
+
+    </main>
+
+    <!-- Подключаем внешний скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>

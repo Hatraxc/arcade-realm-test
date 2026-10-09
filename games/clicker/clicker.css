@@ -1,0 +1,258 @@
+:root {
+    --pc-bg-image: url('bg-meadow.png'); 
+    --panel-bg: rgba(255, 255, 255, 0.88); 
+    --text-color: #1a1a1a;
+    --border-color: #1a1a1a;
+    --accent-btn: #ffb800; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background: var(--pc-bg-image) no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.full-screen-game {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    padding: 0 20px;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.glass-panel {
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 4px solid var(--border-color);
+    border-radius: 32px;
+    box-shadow: 0 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.main-play-zone {
+    flex: 1.3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+/* Облачко для показателей счета */
+.sky-cloud-panel {
+    background: rgba(255, 255, 255, 0.85); 
+    border: 4px solid #1a1a1a;              
+    border-radius: 24px;                    
+    padding: 15px 30px;
+    display: inline-block;                  
+    margin: 15px auto 0;
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15); 
+    text-align: center;
+}
+
+.score-board { 
+    font-size: 3.5rem; 
+    font-weight: 900; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
+    color: #1a1a1a; 
+}
+
+.score-wm-img { 
+    width: 45px; 
+    height: 45px; 
+    filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.1));
+}
+
+.stats-lines {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.stats-lines p:first-child {
+    color: #2ed573; /* Зеленый цвет для ручного клика */
+}
+
+.cps-info { 
+    font-weight: 800; 
+    font-size: 1.1rem; 
+    color: #ff4757; 
+}
+
+/* Зона Капибары */
+.capy-zone {
+    margin: auto auto 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.capy-wrapper {
+    width: 385px; 
+    height: 385px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.08s ease;
+}
+
+.capy-wrapper:active { 
+    transform: scale(0.92) scaleY(0.88); 
+}
+
+.capy-img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    filter: drop-shadow(5px 5px 0px var(--border-color)); 
+}
+
+/* Точные координаты для прилета арбузов в ротик */
+.capy-mouth { 
+    position: absolute; 
+    top: 52%;   
+    left: 72%;  
+    width: 5px; 
+    height: 5px; 
+    background: transparent; 
+}
+
+/* Подсказка снизу */
+.click-hint { 
+    font-weight: 800; 
+    font-size: 1.2rem; 
+    margin-top: 25px;
+    color: #ffffff;
+    text-shadow: 2px 2px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
+}
+
+/* Панель магазина */
+.side-shop-panel {
+    width: 420px;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 15px; border-bottom: 3px solid var(--border-color); padding-bottom: 5px; }
+
+.tabs-nav { display: flex; gap: 10px; margin-bottom: 20px; }
+.tab-link { flex: 1; padding: 12px; background: #e0e0e0; border: 3px solid var(--border-color); border-radius: 16px; font-weight: 800; font-size: 0.95rem; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 4px 0 var(--border-color); }
+.tab-link.active { background: #1a1a1a; color: #fff; transform: translateY(2px); box-shadow: 0 1px 0 var(--border-color); }
+
+.tab-content { display: none; overflow-y: auto; flex: 1; padding-right: 5px; }
+.tab-content.active { display: block; }
+
+.upgrade-card { display: flex; justify-content: space-between; align-items: center; background: #f1f2f6; border: 3px solid var(--border-color); border-radius: 20px; padding: 15px; margin-bottom: 12px; }
+.upgrade-info h3 { font-size: 1.05rem; font-weight: 800; }
+.upgrade-info p { font-size: 0.8rem; opacity: 0.7; margin-top: 2px; }
+
+.shop-btn, .hat-btn { 
+    padding: 10px 20px; 
+    background: var(--accent-btn); 
+    border: 3px solid var(--border-color); 
+    border-radius: 50px; 
+    font-weight: 800; 
+    font-size: 1rem;
+    cursor: pointer; 
+    box-shadow: 0 4px 0 var(--border-color); 
+    transition: all 0.1s ease;
+}
+.shop-btn:hover, .hat-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--border-color); }
+.shop-btn:active, .hat-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--border-color); }
+.hat-btn.owned { background: #2ed573 !important; color: #fff; cursor: default; box-shadow: none !important; transform: none !important; }
+
+.hats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.hat-card { background: #f1f2f6; border: 3px solid var(--border-color); border-radius: 20px; padding: 15px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+.hat-preview { font-size: 2.2rem; }
+.hat-shop-img { width: 50px; height: 50px; object-fit: contain; margin-bottom: 5px; }
+.hat-card p { font-size: 0.85rem; font-weight: 700; margin: 5px 0 10px; }
+
+.back-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: var(--text-color);
+    background: var(--panel-bg);
+    padding: 12px 24px;
+    border: 3px solid var(--border-color);
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 0 6px 0 var(--border-color);
+    transition: all 0.2s ease;
+    z-index: 99;
+}
+.back-home-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 0 var(--border-color); }
+
+/* Анимации арбузов */
+.flying-slice-img { 
+    position: absolute; 
+    width: 45px; 
+    height: 45px; 
+    pointer-events: none; 
+    z-index: 9999;      
+    animation: flyDirectToMouth 0.35s cubic-bezier(0.1, 0.8, 0.3, 1) forwards; 
+}
+
+@keyframes flyDirectToMouth { 
+    0% { 
+        top: 85%; 
+        left: 45%; 
+        transform: scale(0.4) rotate(-45deg); 
+        opacity: 0; 
+    }
+    30% { opacity: 1; }
+    100% { 
+        top: var(--target-y); 
+        left: var(--target-x); 
+        transform: scale(0.85) rotate(15deg); 
+        opacity: 0; 
+    }
+}
+
+.watermelon-particle-dot { 
+    position: absolute; 
+    width: 8px; 
+    height: 8px; 
+    border-radius: 50%; 
+    pointer-events: none; 
+    z-index: 10000; 
+    animation: explodeDot 0.4s ease-out forwards; 
+}
+
+@keyframes explodeDot { 
+    0% { transform: translate(0, 0) scale(1); opacity: 1; } 
+    100% { transform: translate(var(--mx), var(--my)); opacity: 0; } 
+}
+
+/* Адаптивный мобильный режим */
+@media (max-width: 850px) {
+    body { background-attachment: scroll; overflow-y: auto; }
+    .full-screen-game { flex-direction: column; height: auto; padding: 80px 10px 20px; gap: 20px; }
+    .main-play-zone { flex: none; width: 100%; }
+    .sky-cloud-panel { margin-top: 0; }
+    .score-board { font-size: 2.8rem; }
+    .capy-zone { margin: 20px auto; }
+    .capy-wrapper { width: 260px; height: 260px; }
+    .side-shop-panel { width: 100%; padding: 20px 15px; border-radius: 24px; height: auto; }
+}
